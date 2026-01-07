@@ -1,0 +1,170 @@
+.main-container {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgba(16, 14, 137, 0.91);
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.inner-container {
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.expense-calculator, .expense-display {
+    background-color: rgb(168, 168, 222);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.expense-display {
+    padding: 20px;
+}
+
+.calc-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.income-button, .expense-button, .add-expense-button, .reset-button {
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.income-button {
+    background-color: green;
+    margin-top: 10px;
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.expense-button {
+    background-color: crimson;
+    margin-top: 10px;
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.reset-button-div {
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: center; */
+    margin: 10px;
+    width: 100%;
+}
+
+.reset-button {
+    background-color: rgb(37, 37, 37);
+    width: 20%;
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.add-expense-button {
+    background-color: orange;
+}
+
+.input-expense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 15px;
+    row-gap: 10px;
+}
+
+.input-expense input {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 85%;
+} 
+
+.expense-display h2 {
+    margin-top: 5px;
+}
+
+.transactions-list {
+    align-items: center;
+    max-height: 60vh;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+}
+
+.transactions-table thead {
+    position: sticky;
+    top:0;
+    background-color: #f9f9f9;
+    color: black;
+    z-index: 1;
+}
+
+.balance-display {
+    font-size: 150%;
+    text-align: right;
+    margin-right: 10%;
+}
+
+.expense {
+    color: crimson;
+}
+
+.income {
+    color: green
+}
+
+@media screen and (min-width: 610px) {
+    .input-expense {
+        flex-direction: row;
+        justify-content: center;
+        width: 85%;
+    }
+
+    .input-expense input {
+        width: 40%;
+        margin: 15px 5px;
+    }
+
+    .reset-button {
+        width: 10%;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .transactions-list {
+        width: 90%;
+        font-size: 16px;
+    }
+}

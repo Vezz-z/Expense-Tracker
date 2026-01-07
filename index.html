@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Home | Expense Tracker </title>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="main-container">
+    <h1> Expense Tracker </h1>
+    <div class="inner-container">
+        <div class="expense-calculator">
+            <div class="calc-buttons">
+                <a class="income-button" id="income-button"> INCOME </a>
+                <a class="expense-button" id="expense-button"> EXPENSE </a>
+            </div>
+            <div class="input-expense">
+                <input id="date-input" type="date" placeholder="Date">
+                <input id="amount-input" type="number" placeholder="Amount">
+                <input id="category-input" type="text" placeholder="Category">
+            </div>
+            <div class="calc-buttons">
+                <a class="add-expense-button" id="add-expense-button"> ADD </a>
+            </div>
+        </div>
+        <div class="expense-display">
+            <h2> Transactions History </h2>
+            <div class="transactions-list">
+                <table border="1" cellpadding="10" class="transactions-table" id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th> Date </th>
+                            <th> Category </th>
+                            <th> Amount </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="calc-buttons reset-button-div">
+                <a class="reset-button inactive" id="reset-button"> RESET </a>
+            </div>
+        </div>
+        
+        <div class="balance-display" id="balance-display">
+            <footer> Balance: ₹ 0.00 </footer>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
