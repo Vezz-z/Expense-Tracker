@@ -1,4 +1,4 @@
-const OFFLINE_CACHE = 'app-v2'
+const OFFLINE_CACHE = 'app-v1'
 const ASSETS = [
     '/',
     '/index.html',
