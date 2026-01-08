@@ -1,4 +1,4 @@
-const OFFLINE_CACHE = 'app-v1.0.0'
+const OFFLINE_CACHE = 'app-v1.1.0'
 const ASSETS = [
     '/',
     '/index.html',
@@ -18,7 +18,7 @@ self.addEventListener('fetch', event => {
         caches.match(event.request).then(response => {
             return response || fetch(event.request).catch(() => {
                 if (event.request.mode === 'navigate') {
-                    return caches.match('index.html')
+                    return caches.match('/index.html')
                 }
             })
         })

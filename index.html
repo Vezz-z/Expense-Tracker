@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A simple expense tracker to manage your income and expenses effectively.">
     <meta name="keywords" content="Expense Tracker, Income, Expenses, Budgeting, Finance Management">
+    <meta name="theme-color" content="#f9f9f9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title> Home | Expense Tracker </title>
     <link rel="icon" href="assets/img/icon-512.png" type="image/png">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="main-container">
+    <div class="pwa-install-banner" id="pwa-install-banner">
+        <img src="/assets/img/icon-192.png" alt="App Icon" class="pwa-icon">
+        <div class="pwa-text">
+            <h3> Install Expense Tracker App </h3>
+            <p> Install this app on your device for a better experience. </p>
+            <div class="dsa-container">
+                <input type="checkbox" id="dsa-checkbox" class="dsa-checkbox" name="dsa-checkbox">
+                <label for="dsa-checkbox"> Don't show again. </label>
+            </div>
+            <div class="pwa-buttons">
+                <a class="pwa-cancel-button" id="pwa-cancel-button"> Cancel </a>
+                <a class="pwa-install-button" id="pwa-install-button"> Install </a>
+            </div>
+        </div>
+    </div>
     <h1> Expense Tracker </h1>
     <div class="inner-container">
         <div class="expense-calculator">
@@ -38,6 +56,9 @@
                             <th> Amount </th>
                         </tr>
                     </thead>
+                    <tbody id="transactions-table-body">
+
+                    </tbody>
                 </table>
             </div>
             <div class="calc-buttons reset-button-div">

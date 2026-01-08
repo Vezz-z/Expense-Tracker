@@ -1,3 +1,52 @@
+// Install PWA prompt
+async function isAndroid() {
+    if (navigator.userAgentData) {
+        const plt = navigator.userAgentData.platform || ''
+        return plt.toLowerCase() === 'android'
+    }
+    return /android/i.test(navigator.userAgent)
+}
+
+( async () => {
+    if (await isAndroid() && !window.matchMedia('(display-mode: standalone)').matches && !localStorage.getItem('dsaChoice')) {
+        const pwaBanner = document.querySelector('.pwa-install-banner')
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if(pwaBanner) pwaBanner.classList.add('show')
+            }, 4000)
+        })
+        
+        let differedPrompt = null
+        
+        const pwaInstallBtn = document.getElementById('pwa-install-button')
+        const pwaCancelBtn = document.getElementById('pwa-cancel-button')
+        const dsaCheckbox = document.getElementById('dsa-checkbox')
+
+        window.addEventListener('beforeinstallprompt', async (e) => {
+            e.preventDefault()
+            differedPrompt = e
+        })
+
+        pwaCancelBtn?.addEventListener('click',async () => {
+            pwaBanner.classList.remove('show')
+            if (dsaCheckbox.checked) {
+                localStorage.setItem('dsaChoice', 'true')
+            }
+        })
+
+        pwaInstallBtn?.addEventListener('click', async () => {
+            if (!differedPrompt) return
+
+            differedPrompt.prompt()
+            await differedPrompt.userChoice
+            differedPrompt = null
+            pwaBanner.classList.remove('show')
+        })
+    }
+}) ()
+
+
 let allExpenses = []
 const oldExpenses = localStorage.getItem('allOldExpenses')
 
@@ -13,7 +62,7 @@ const dateInput = document.getElementById('date-input')
 const amountInput = document.getElementById('amount-input')
 const categoryInput = document.getElementById('category-input')
 const addBtn = document.getElementById('add-expense-button')
-const expenseTableBody = document.getElementById('transactions-table')
+const expenseTableBody = document.getElementById('transactions-table-body')
 
 incomeBtn.classList.add('active')
 
@@ -58,6 +107,11 @@ addBtn.addEventListener('click', () => {
     let amountValue = parseFloat(amountInput.value)
     const categoryValue = categoryInput.value
 
+    if (!dateValue || !categoryValue || isNaN(amountValue) || amountValue <= 0 || !validateCategoryValue(categoryValue)) {
+        alert('Please enter valid data')
+        return
+    }
+
     let addData = 
         ` 
         <tr class='${transactionType}'>
@@ -66,10 +120,6 @@ addBtn.addEventListener('click', () => {
             <td>₹ ${amountValue}</td>
         </tr>
         `
-    if (!dateValue || !categoryValue || isNaN(amountValue) || amountValue <= 0) {
-        alert('Please enter valid data')
-        return
-    }
 
     allExpenses.push({
         date: dateValue,
@@ -96,14 +146,7 @@ resetBtn.addEventListener('click', () => {
     balance = 0
     balanceDisplay.textContent = `Balance: ₹ ${balance.toFixed(2)}`
     allExpenses = []
-    expenseTableBody.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th> Date </th>
-                            <th> Category </th>
-                            <th> Amount </th>
-                        </tr>
-                    </thead>`
+    expenseTableBody.innerHTML = ''
     localStorage.removeItem('allOldExpenses')
     updateResetBtn()    
 })
@@ -116,6 +159,16 @@ function updateResetBtn() {
         resetBtn.classList.remove('inactive')
         resetBtn.disabled = false
     }
+}
+
+function validateCategoryValue(categoryValue) {
+    const invalidChars = ['<', '>', '/', '\\', '{', '}', '[', ']', '(', ')']
+    for (let char of invalidChars) {
+        if (categoryValue.includes(char)) {
+            return false
+        }
+    }
+    return true
 }
 
 // Service Worker Registration
