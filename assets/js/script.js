@@ -17,6 +17,11 @@ const expenseTableBody = document.getElementById('transactions-table')
 
 incomeBtn.classList.add('active')
 
+const today = new Date();
+today.setMinutes(today.getMinutes() - today.getTimezoneOffset())
+const localDate = today.toISOString().split('T')[0]
+dateInput.max = localDate
+
 if (oldExpenses) {
     allExpenses = JSON.parse(oldExpenses)
 

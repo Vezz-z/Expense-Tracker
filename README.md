@@ -6,4 +6,4 @@
 ###
 # Progressive Web App (PWA) Features
 ###
-### This site can also be downloaded as a PWA! Try installing it on your devices and share yout experience. 📝
+### This site can also be downloaded as a PWA! Try installing it on your devices and share your experience. 📝
