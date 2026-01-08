@@ -138,6 +138,14 @@
     color: green
 }
 
+@media screen and (min-width: 768px){
+    .income-button, .expense-button {
+        &:hover {
+            opacity:1;
+        }
+    }
+}
+
 @media screen and (min-width: 610px) {
     .input-expense {
         flex-direction: row;
