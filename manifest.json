@@ -1,9 +1,10 @@
 {
     "name": "Expense Tracker",
     "short_name": "Expense Tracker",
-    "start_url": ".",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_colour": "#f9f9f9",
+    "background_color": "#f9f9f9",
     "orientation": "portrait",
     "description": "A simple expense tracker to manage your income and expenses effectively, offline.",
     "icons": [
